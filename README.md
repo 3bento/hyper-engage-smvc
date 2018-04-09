@@ -38,7 +38,7 @@ I am using and folloing that links, i will update it with more details and links
 	* Spring MVC
 	* JPA or Hibernate
 	
-## Progress of that project
+## Progress of the project
 That is simple Scrum kanban! Maybe will remove it. I don't know, i like it XD
 
 To-Do
