@@ -3,14 +3,6 @@
 That is web application  that can make the users share information, added friends and more.
 I will put more details here, so soon. That project is started to improve my skills with Spring Framework.
 
-## Progress of that project
-
-- [x] start project (pre configuration)
-- [ ] sign (create user, login, logout)
-- [ ] send picture in time line (send, edit, delete)
-- [ ] profile (show, update)
-I want to add more tasks after finish that one.
-
 ## Authors
 
 ** Eduardo Bento Rocha Junior ** - *Initial work* - [Hyper-Engage-smvc](https://github.com/eduardobento2/hyper-engage-smvc)
@@ -45,3 +37,22 @@ I am using and folloing that links, i will update it with more details and links
 	* Spring Boot
 	* Spring MVC
 	* JPA or Hibernate
+	
+## Progress of that project
+That is simple Scrum kanban! Maybe will remove it. I don't know, i like it XD
+
+To-Do
+- signin (frontend / backend)
+- configure the database / memcache
+- signup (frontend / backend)
+- forgetpassowrd (front / backend)
+- profile (show, update)
+- comming!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+In-Progress
+- signin (frontend) 75%/100%
+
+Done
+- [x] configured Spring Boot (Spring MVC)
+- [x] configured internationalization (en,jp,pt-BR)
+- [x] configured page error 404/500 (no layout added)
