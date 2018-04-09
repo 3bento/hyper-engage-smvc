@@ -23,7 +23,7 @@ public class SampleController {
 
 	// inject via application.properties
 	@Value("${welcome.message:test")
-	private String message = "Hello World";
+	private String message = "Hi quiin, welcome to JAVA EE";
 
 	@RequestMapping("/")
 	public String welcome(Locale locale, Model model) {
@@ -51,11 +51,17 @@ public class SampleController {
 		model.put("message", this.message);
 		return "auth/signup";
 	}
+	
+	@RequestMapping("/aboutus")
+	public String aboutus(Map<String, Object> model) {
+		model.put("message", this.message);
+		return "aboutus";
+	}
 
-	@RequestMapping("/getMessage")
+	@RequestMapping("/sayHi")
 	@ResponseBody
 	String name() {
-		return "Hello world!";
+		return "Hello Quiin, that is Java Web Example!!!!";
 	}
 
 	@ExceptionHandler(RuntimeException.class)

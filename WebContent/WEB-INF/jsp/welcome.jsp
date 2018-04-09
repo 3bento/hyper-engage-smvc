@@ -33,7 +33,7 @@
 		<p>Current Locale : ${pageContext.response.locale} / ${locale}</p>
 	</div>
 
-	<%--CONTENT FAKE --%>
+	<%-- CONTENT FAKE --%>
 	<div class="ui raised very padded text container segment">
 		<h2 class="ui header right floated">JavaServer Pages</h2>
 		<div class="ui clearing divider"></div>
