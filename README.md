@@ -50,7 +50,9 @@ To-Do
 - comming!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 In-Progress
-- signup (frontend) 75%/100%
+- configure the database 5%/100%
+- signup (frontend) 90%/100%
+
 
 Done
 - [x] configured Spring Boot (Spring MVC)

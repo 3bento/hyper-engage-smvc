@@ -7,7 +7,7 @@
 		<div class="item">
 			<a class="home icon"
 				href="${pageContext.servletContext.contextPath}/"><spring:message
-					code="menu.home" /></a>
+					code="menu.home"/></a>
 		</div>
 		<div class="item">
 			<a class="mail icon"
@@ -28,15 +28,15 @@
 							code="menu.language.pt" /> </a>
 				</div>
 			</div>
-			<div class=" item">
+			<div class="item">
 				<a class="grid layout icon"
 					href="${pageContext.servletContext.contextPath}/signup"><spring:message
-						code="menu.signup" /></a>
+						code="menu.signup"/></a>
 			</div>
-			<div class=" item">
+			<div class="item">
 				<a class="mail icon"
 					href="${pageContext.servletContext.contextPath}/signin"><spring:message
-						code="menu.signin" /></a>
+						code="menu.signin"/></a>
 			</div>
 		</div>
 	</div>
