@@ -42,15 +42,15 @@ I am using and folloing that links, i will update it with more details and links
 That is simple Scrum kanban! Maybe will remove it. I don't know, i like it XD
 
 To-Do
-- signin (frontend / backend)
-- configure the database / memcache
 - signup (frontend / backend)
+- configure the database / memcache
+- signin (frontend / backend)
 - forgetpassowrd (front / backend)
 - profile (show, update)
 - comming!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 In-Progress
-- signin (frontend) 75%/100%
+- signup (frontend) 75%/100%
 
 Done
 - [x] configured Spring Boot (Spring MVC)
