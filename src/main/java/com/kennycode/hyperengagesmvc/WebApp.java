@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan({ "com.kennycode.hyperengagesmvc" })
 @EnableAutoConfiguration
-// @SpringBootConfiguration
+//@SpringBootConfiguration
 public class WebApp extends SpringBootServletInitializer {
 
 	private static Class<WebApp> applicationClass = WebApp.class;
