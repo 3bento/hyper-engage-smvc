@@ -1,4 +1,4 @@
-package com.kennycode.hyperengagesmvc.controller;
+package com.kennycode.hyperengagesmvc.controllers;
 
 import java.util.Locale;
 import java.util.Map;

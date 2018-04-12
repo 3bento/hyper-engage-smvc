@@ -1,4 +1,4 @@
-package com.kennycode.hyperengagesmvc.model;
+package com.kennycode.hyperengagesmvc.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

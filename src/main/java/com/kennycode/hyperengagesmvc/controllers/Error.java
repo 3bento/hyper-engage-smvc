@@ -1,4 +1,4 @@
-package com.kennycode.hyperengagesmvc.controller;
+package com.kennycode.hyperengagesmvc.controllers;
 
 public class Error {
 	private int code;
