@@ -1,39 +1,23 @@
-/*package com.kennycode.hyperengagesmvc;
+package com.kennycode.hyperengagesmvc;
 
-import junit.framework.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-*//**
+/**
  * Unit test for simple App.
- *//*
-public class AppTest 
-    extends TestCase
-{
-    *//**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     *//*
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest(properties = "spring.profiles.active=test")
+@AutoConfigureMockMvc
+public class AppTest extends TestCase {
 
-    *//**
-     * @return the suite of tests being tested
-     *//*
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    *//**
-     * Rigourous Test :-)
-     *//*
-    public void testApp()
-    {
-        assertTrue( true );
+	@Test
+    public void testMe() {
+        System.out.println("Hello World!");
     }
 }
-*/
