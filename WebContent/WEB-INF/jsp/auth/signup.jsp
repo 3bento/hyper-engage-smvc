@@ -29,7 +29,7 @@
 		<p>These passwords don't match.</p>
 		<p>Short passwords are easy to guess. Try one with at least 8 characters.</p>
 	</div>
-	<form class="ui form attached container" method="POST">
+	<form class="ui form attached container" name="user" method="POST" action="${pageContext.servletContext.contextPath}/signup/save">
 		<div class="ui segment attached">
 			<h4 class="ui dividing header">
 				<sp:message code="signup.form.personali" />
