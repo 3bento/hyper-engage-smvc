@@ -38,12 +38,12 @@
 				<div class="two fields">
 					<div class="required field">
 						<label><sp:message code="signup.form.personali.firstname" /></label>
-						<input type="text" name="personal[first-name]"
+						<input type="text" name="firstName"
 							placeholder="<sp:message code='signup.form.personali.firstname.placeholder'/>" />
 					</div>
 					<div class="required field">
 						<label><sp:message code="signup.form.personali.lastname" /></label>
-						<input type="text" name="personal[last-name]"
+						<input type="text" name="lastName"
 							placeholder="<sp:message code='signup.form.personali.lastname.placeholder'/>" />
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 			<div class="required field">
 				<label><sp:message code="signup.form.personali.email" /></label>
 				<div class="ui left icon input">
-					<i class="icon mail"></i> <input type="text" name="personal[email]"
+					<i class="icon mail"></i> <input type="text" name="email"
 						placeholder="<sp:message code="signup.form.personali.email.placeholder"/>" />
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 						code="signup.form.personali.genderandbirthday" /></label>
 				<div class="two fields">
 					<div class="field">
-						<select>
+						<select name="gender">
 							<option value=""><sp:message
 									code="signup.form.personali.gender" /></option>
 							<option value="1"><sp:message
@@ -70,7 +70,7 @@
 						</select>
 					</div>
 					<div class="field">
-						<input type="text" name="birthday[birthday]"
+						<input type="text" name="birthday"
 							placeholder="<sp:message code="signup.form.personali.birthday.placeholder"/>" />
 					</div>
 				</div>

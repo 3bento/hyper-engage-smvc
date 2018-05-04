@@ -40,18 +40,6 @@ public class SampleController {
 		return "welcome";
 	}
 
-	@RequestMapping("/signin")
-	public String signin(Map<String, Object> model) {
-		model.put("message", this.message);
-		return "auth/signin";
-	}
-
-	@RequestMapping("/signup")
-	public String singup(Map<String, Object> model) {
-		model.put("message", this.message);
-		return "auth/signup";
-	}
-	
 	@RequestMapping("/aboutus")
 	public String aboutus(Map<String, Object> model) {
 		model.put("message", this.message);
