@@ -20,10 +20,9 @@ public class PasswordEncrypt {
 		} catch (NoSuchAlgorithmException e) {
 			e.getStackTrace();
 		}
-
 		return hexString;
 	}
-	
+
 	/**
 	 * Receive password and hash to check if them is equal.
 	 * @param password - normal string

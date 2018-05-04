@@ -1,5 +1,6 @@
 package com.kennycode.hyperengagesmvc.controllers;
 
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kennycode.hyperengagesmvc.models.User;
 import com.kennycode.hyperengagesmvc.models.UserMessage;
@@ -26,21 +28,15 @@ public class AuthController {
 	private Authentication authentication;
 
 	@RequestMapping(name = "/signup/save", method = RequestMethod.POST)
-	public String signinSave(Map<String, Object> model, @ModelAttribute User user) {
-
-		UserMessage userMessage = new UserMessage();
-
-		// try to save user
-		if (user != null) {
-			user = authentication.create(user);
-			userMessage.setError(false);
-			userMessage.setMessage("User created with success!");
-		} else {
-			userMessage.setError(true);
-			userMessage.setMessage("User not created with success!");
+	public String signinSave(RedirectAttributes  redirectAttrs, @ModelAttribute User user, Locale locale) {
+		
+		UserMessage userMessage = authentication.createUser(user, locale);
+		redirectAttrs.addFlashAttribute("message", userMessage);
+		
+		if(userMessage.isError()) {
+			return "redirect:/signup";
 		}
 
-		model.put("message", userMessage);
 		return "redirect:/";
 	}
 

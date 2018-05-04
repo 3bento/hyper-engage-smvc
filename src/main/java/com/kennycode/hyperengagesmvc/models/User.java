@@ -1,9 +1,12 @@
 package com.kennycode.hyperengagesmvc.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -11,14 +14,16 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(name="username", unique=true, nullable= false)
 	private String username;
+	@JsonIgnore
 	private String password;
 	private String firstName;
 	private String lastName;
+	@Column(name="email", unique=true,  nullable= false)
 	private String email;
-	private Long created;
-	private Long updated;
-
+	private Long createdTime;
+	private Long updatedTime;
 
 	public Long getId() {
 		return id;
@@ -45,11 +50,11 @@ public class User {
 	}
 
 	public Long getCreated() {
-		return created;
+		return createdTime;
 	}
 
 	public Long getUpdated() {
-		return updated;
+		return updatedTime;
 	}
 
 	public void setId(Long id) {
@@ -77,11 +82,11 @@ public class User {
 	}
 
 	public void setCreated(Long created) {
-		this.created = created;
+		this.createdTime = created;
 	}
 
 	public void setUpdated(Long updated) {
-		this.updated = updated;
+		this.updatedTime = updated;
 	}
 
 	@Override
