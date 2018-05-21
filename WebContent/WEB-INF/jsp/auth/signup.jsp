@@ -24,7 +24,7 @@
 		<div class="ui negative message container attached">
 			<i class="close icon"></i>
 			<div class="header">We're sorry we can't create your account!</div>
-			<c:forEach items="message.descriptions" var="description">
+			<c:forEach items="${message.descriptions}" var="description">
 				<p><c:out value="${description}"/></p>
 			</c:forEach>
 		</div>
@@ -104,7 +104,7 @@
 					<label> <sp:message code="signup.form.accounti.username" />
 					</label>
 					<div class="ui left action input">
-						<button class="ui  labeled icon button">
+						<button class="ui labeled icon button">
 							<%-- loading --%>
 							<i class="eye icon"></i>Check it
 						</button>

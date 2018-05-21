@@ -62,12 +62,13 @@ public class Authentication {
 			userMessage.addDescription(messageSource.getMessage("usermessage.user.created", null, locale));
 			userMessage.setObject(user);
 		} else {
+			userMessage.setIsError(true);
 			
 			if(existUsername)
-				
-			
-			userMessage.setIsError(true);
-			userMessage.addDescription(messageSource.getMessage("usermessage.user.not.created", null, locale));
+				userMessage.addDescription(messageSource.getMessage("usermessage.user.username.exist", null, locale));
+			if(existEmail)
+				userMessage.addDescription(messageSource.getMessage("usermessage.user.email.exist", null, locale));
+
 			userMessage.setObject(user);
 			return userMessage;
 		}
