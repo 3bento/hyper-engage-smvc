@@ -5,18 +5,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kennycode.hyperengagesmvc.models.User;
 import com.kennycode.hyperengagesmvc.models.UserMessage;
 import com.kennycode.hyperengagesmvc.services.Authentication;
+import com.kennycode.hyperengagesmvc.util.ValidateUser;
 
 @Controller
 public class AuthController {
@@ -27,33 +25,43 @@ public class AuthController {
 	@Autowired
 	private Authentication authentication;
 
-	@RequestMapping(name = "/signup/save", method = RequestMethod.POST)
+	@PostMapping("/signup/save")
 	public String signinSave(RedirectAttributes  redirectAttrs, @ModelAttribute User user, Locale locale) {
 		
-		UserMessage userMessage = authentication.createUser(user, locale);
-		redirectAttrs.addFlashAttribute("message", userMessage);
-		
-		if(userMessage.isError()) {
+		// validate user from create Account
+		if(ValidateUser.createAccount(user)) { 
+			// fields is okay, try to save user.
+			UserMessage userMessage = authentication.createUser(user, locale);
+			redirectAttrs.addFlashAttribute("message", userMessage);
+			
+			if(userMessage.getIsError()) {
+				// probably got error to save user.
+				return "redirect:/signup";
+			}
+			
+			// TODO send email to active account.
+ 			
+			
+			// everything is okay.
+			return "redirect:/signin";
+		}else {
+			// fields is not okay.
+			// that method should return list of errors with more details, but i don't know how it will looks like (strucutre).
+			ValidateUser.createAccountGetErrors(user);
+			// temporary message of problem with fields of user to create account.
+			UserMessage userMessage = new UserMessage(true, "Cannot create account (check fields) username, email and password.", user);
+			redirectAttrs.addFlashAttribute("message", userMessage);
 			return "redirect:/signup";
 		}
-
-		return "redirect:/";
 	}
 
-	@RequestMapping("/signup")
+	@GetMapping("/signup")
 	public String singup(Map<String, Object> model) {
 		return "auth/signup";
 	}
 
-	@RequestMapping("/signin")
+	@GetMapping("/signin")
 	public String signin(Map<String, Object> model) {
 		return "auth/signin";
-	}
-
-	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<Error> handle(RuntimeException ex) {
-		System.out.println("controller local exception handling @ExceptionHandler");
-		Error error = new Error(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
-		return new ResponseEntity<Error>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

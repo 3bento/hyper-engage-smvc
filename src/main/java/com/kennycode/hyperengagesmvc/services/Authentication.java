@@ -41,8 +41,8 @@ public class Authentication {
 
 		// if user is null, set message and return.
 		if (user == null) {
-			userMessage.setError(true);
-			userMessage.setDescription(messageSource.getMessage("usermessage.user.not.created", null, locale));
+			userMessage.setIsError(true);
+			userMessage.addDescription(messageSource.getMessage("usermessage.user.not.created", null, locale));
 			userMessage.setObject(user);
 			return userMessage;
 		}
@@ -58,12 +58,16 @@ public class Authentication {
 			user.setUpdated(now);
 			user.setPassword(PasswordEncrypt.encryptSHA(user.getPassword()));
 			user = userRepository.save(user);
-			userMessage.setError(false);
-			userMessage.setDescription(messageSource.getMessage("usermessage.user.created", null, locale));
+			userMessage.setIsError(false);
+			userMessage.addDescription(messageSource.getMessage("usermessage.user.created", null, locale));
 			userMessage.setObject(user);
 		} else {
-			userMessage.setError(true);
-			userMessage.setDescription(messageSource.getMessage("usermessage.user.not.created", null, locale));
+			
+			if(existUsername)
+				
+			
+			userMessage.setIsError(true);
+			userMessage.addDescription(messageSource.getMessage("usermessage.user.not.created", null, locale));
 			userMessage.setObject(user);
 			return userMessage;
 		}
@@ -85,12 +89,12 @@ public class Authentication {
 		User user = userRepository.findFirstByUsername(username);
 
 		if (user == null) {
-			userMessage.setDescription(messageSource.getMessage("usermessage.user.username.not.exist", null, locale));
-			userMessage.setError(false);
+			userMessage.addDescription(messageSource.getMessage("usermessage.user.username.not.exist", null, locale));
+			userMessage.setIsError(false);
 			userMessage.setObject(user);
 		} else {
-			userMessage.setDescription(messageSource.getMessage("usermessage.user.username.exist", null, locale));
-			userMessage.setError(true);
+			userMessage.addDescription(messageSource.getMessage("usermessage.user.username.exist", null, locale));
+			userMessage.setIsError(true);
 			userMessage.setObject(user);
 		}
 

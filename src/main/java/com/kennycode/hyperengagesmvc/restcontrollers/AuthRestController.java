@@ -12,6 +12,7 @@ import com.kennycode.hyperengagesmvc.models.UserMessage;
 import com.kennycode.hyperengagesmvc.services.Authentication;
 
 @RestController
+@RequestMapping("/api")
 public class AuthRestController {
 
 	@Autowired
