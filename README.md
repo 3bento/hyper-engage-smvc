@@ -45,6 +45,30 @@ I am using and folloing that links, i will update it with more details and links
 
 I am not using lombok yet, but i will use it.
 
+## Progress of the project
+That is simple Scrum kanban! Maybe will remove it. I don't know, i like it XD
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+To-Do
+- signup (frontend / backend)
+- configure the database / memcache
+- signin (frontend / backend)
+- forgetpassowrd (front / backend)
+- profile (show, update)
+-------------------------------------------------------------------------------------------------
+In-Progress
+- signup (frontend) 98%/100% (I need to compare passwords.)
+- signup (backend) 98%/100% (I need to change hard strings to internationalization.)
+-------------------------------------------------------------------------------------------------
+Done
+- [x] configured Spring Boot (Spring MVC)
+- [x] configured internationalization (en,jp,pt-BR)
+- [x] configured page error 404/500 (no layout added)
+- [x] configure the database (mysql)
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
 ## Acknowledgments
 * Maven
 	* What is Maven?
@@ -57,24 +81,3 @@ I am not using lombok yet, but i will use it.
 	* Spring MVC
 	* JPA or Hibernate
 	
-## Progress of the project
-That is simple Scrum kanban! Maybe will remove it. I don't know, i like it XD
-
-To-Do
-- signup (frontend / backend)
-- configure the database / memcache
-- signin (frontend / backend)
-- forgetpassowrd (front / backend)
-- profile (show, update)
-- comming!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-In-Progress
-- configure the database 90%/100%
-- signup (frontend) 95%/100%
-- signup (backend) 80%/100%
-
-
-Done
-- [x] configured Spring Boot (Spring MVC)
-- [x] configured internationalization (en,jp,pt-BR)
-- [x] configured page error 404/500 (no layout added)
