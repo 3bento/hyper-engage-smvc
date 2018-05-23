@@ -3,6 +3,8 @@ package com.kennycode.hyperengagesmvc.controllers;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kennycode.hyperengagesmvc.models.User;
 import com.kennycode.hyperengagesmvc.models.UserMessage;
 import com.kennycode.hyperengagesmvc.services.Authentication;
+import com.kennycode.hyperengagesmvc.services.IRecaptchaService;
 import com.kennycode.hyperengagesmvc.util.ValidateUser;
 
 @Controller
@@ -24,14 +27,26 @@ public class AuthController {
 
 	@Autowired
 	private Authentication authentication;
+	
+	@Autowired
+	private IRecaptchaService recaptchaService;
 
 	@PostMapping("/signup/save")
-	public String signinSave(RedirectAttributes  redirectAttrs, @ModelAttribute User user, Locale locale) {
+	public String signinSave(@ModelAttribute User user,  @ModelAttribute("g-recaptcha-response") String gRecaptcha, RedirectAttributes redirectAttrs, Locale locale, HttpServletRequest request) {
+		UserMessage userMessage = new UserMessage();
+		String ip = request.getRemoteAddr();
+		userMessage = recaptchaService.process(gRecaptcha, ip);
 		
+		// if get error in recaptcha return to singup page! (it will change)
+		if(userMessage.getIsError()) {
+			redirectAttrs.addFlashAttribute("message", userMessage);
+			return "redirect:/signup";
+		}
+
 		// validate user from create Account
 		if(ValidateUser.createAccount(user)) { 
 			// fields is okay, try to save user.
-			UserMessage userMessage = authentication.createUser(user, locale);
+			userMessage = authentication.createUser(user, locale);
 			redirectAttrs.addFlashAttribute("message", userMessage);
 			
 			if(userMessage.getIsError()) {
@@ -49,7 +64,9 @@ public class AuthController {
 			// that method should return list of errors with more details, but i don't know how it will looks like (strucutre).
 			ValidateUser.createAccountGetErrors(user);
 			// temporary message of problem with fields of user to create account.
-			UserMessage userMessage = new UserMessage(true, "Cannot create account (check fields) username, email and password.", user);
+			userMessage.setIsError(true);
+			userMessage.addDescription("Cannot create account (check fields) username, email and password.");
+			userMessage.setObject(user);
 			redirectAttrs.addFlashAttribute("message", userMessage);
 			return "redirect:/signup";
 		}

@@ -34,7 +34,6 @@ public class Authentication {
 			return true;
 		return false;
 	}
-
 	public UserMessage createUser(User user, Locale locale) {
 
 		userMessage = new UserMessage();
