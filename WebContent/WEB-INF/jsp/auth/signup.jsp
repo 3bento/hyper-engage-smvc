@@ -25,13 +25,16 @@
 			<i class="close icon"></i>
 			<div class="header">We're sorry we can't create your account!</div>
 			<c:forEach items="${message.descriptions}" var="description">
-				<p><c:out value="${description}"/></p>
+				<p>
+					<c:out value="${description}" />
+				</p>
 			</c:forEach>
 		</div>
 	</c:if>
 	<%-- FIELDS / FORM --%>
 	<form class="ui form attached container" name="user" method="POST"
-		action="${pageContext.servletContext.contextPath}/signup/save">
+		action="${pageContext.servletContext.contextPath}/signup/save"
+		onsubmit="return validateForm()">
 		<%-- 
 	Changed*
 	The field below will be necessary after active account by email.
@@ -104,13 +107,14 @@
 					<label> <sp:message code="signup.form.accounti.username" />
 					</label>
 					<div class="ui left action input">
-						<button class="ui labeled icon button">
+						<button class="ui labeled icon button" id="check-username">
 							<%-- loading --%>
 							<i class="eye icon"></i>Check it
 						</button>
-						<input type="text" name="username"
+						<input type="text" name="username" id="username"
 							placeholder="<sp:message code='signup.form.accounti.username.placeholder'/>" />
 					</div>
+					<div id="usernameMessage"></div>
 				</div>
 				<div class="required field">
 					<label> <sp:message code="signup.form.personali.email" />
@@ -119,6 +123,7 @@
 						<i class="icon mail"></i> <input type="text" name="email"
 							placeholder="<sp:message code='signup.form.personali.email.placeholder'/>" />
 					</div>
+
 				</div>
 			</div>
 			<div class="two fields">
@@ -126,19 +131,24 @@
 					<label> <sp:message code="signup.form.accounti.password" />
 					</label>
 					<div class="ui left icon input">
-						<i class="key icon"></i> <input type="password" name="password"
-							placeholder="<sp:message code='signup.form.accounti.passwordagain.placeholder'/>" />
+						<i class="key icon"></i> <input type="password" id="pwd"
+							name="password"
+							placeholder="<sp:message code='signup.form.accounti.password.placeholder'/>"
+							onkeyup="validatePassword()" />
 					</div>
+					<div id="pwdMessage"></div>
 				</div>
 				<div class="required field">
 					<label> <sp:message
 							code="signup.form.accounti.passwordagain" />
 					</label>
 					<div class="ui left icon input">
-						<i class="key icon"></i> <input type="password"
+						<i class="key icon"></i> <input type="password" id="pwdAgain"
 							name="passwordAgain"
-							placeholder="<sp:message code='signup.form.accounti.passwordagain.placeholder'/>" />
+							placeholder="<sp:message code='signup.form.accounti.passwordagain.placeholder'/>"
+							onkeyup="validatePassword()" />
 					</div>
+					<div id="pwdMessageAgain"></div>
 				</div>
 			</div>
 		</div>
@@ -156,5 +166,88 @@
 			href="${pageContext.servletContext.contextPath}/signin">Login
 			here </a> instead.
 	</div>
+
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+	
+		$('#check-username').click(function(){
+			var username = $('#username').val();
+			//console.log(username);
+			$.getJSON("${pageContext.servletContext.contextPath}/api/signup/search/"+username, success);
+		});
+	
+		function success(data){
+			var username = document.getElementById("username");
+			var usernameMessage = document.getElementById("usernameMessage");
+			if(data.isError){
+				username.className=""
+				usernameMessage.className = "ui pointing red basic label";
+				usernameMessage.innerHTML = "<sp:message code='usermessage.user.username.exist'/>";
+			} else {
+				usernameMessage.className = "ui pointing green basic label";
+				usernameMessage.innerHTML = "<sp:message code='usermessage.user.username.not.exist'/>";
+			}
+		}
+	
+
+		function validateForm(){
+				return validateUsername() && validatePassword();
+		}
+		
+		function validateUsername(){
+			var username = document.getElementById("username");
+			var usernameMessage = document.getElementById("usernameMessage");
+			
+			if(username.value.length < 4){
+				usernameMessage.className = "ui pointing red basic label";
+				usernameMessage.innerHTML = "<sp:message code='signup.form.accounti.error.username.minimum'/>";
+				return false;
+			}
+			return true;
+		}
+	
+		function validatePassword(){
+			
+			// get the pwd and pwd_again fields.
+			var pwd = document.getElementById("pwd");
+			var pwdAgain = document.getElementById("pwdAgain");
+			var result = true;
+			
+			// div to show errors
+			var pwdMessage = document.getElementById("pwdMessage");
+			var pwdMessageAgain = document.getElementById("pwdMessageAgain");
+			
+			// check the size of pwd fields.
+			result = isPwdLargerOrEqualToEight(pwd,pwdMessage, "<sp:message code='signup.form.accounti.error.password.minimum'/>");
+			result = isPwdLargerOrEqualToEight(pwdAgain,pwdMessageAgain, "<sp:message code='signup.form.accounti.error.passwordagain.minimum'/>");
+						
+			// check if the passwords are equal.
+			if(pwd.value != pwdAgain.value){
+				pwdMessageAgain.className = "ui pointing red basic label";
+				pwdMessageAgain.innerHTML = "<sp:message code='signup.form.accounti.error.passwords.not.equal'/>";
+				result = false;
+			}
+			
+			return result;
+		}
+	
+		/**
+			Check the minimum value of password!
+			It should be greater or equal to 8!
+		**/
+		function isPwdLargerOrEqualToEight(e, eMessage, text){
+			if(e.value.length < 8){
+				eMessage.className = "ui pointing red basic label";
+				eMessage.innerHTML = text;
+				return false;
+			}else{
+				eMessage.className = "";
+				eMessage.innerHTML = "";
+				return true;
+			}
+		}
+	</script>
+
 </body>
 </html>
