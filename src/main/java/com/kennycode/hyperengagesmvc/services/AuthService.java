@@ -13,7 +13,7 @@ import com.kennycode.hyperengagesmvc.models.UserMessage;
 import com.kennycode.hyperengagesmvc.util.PasswordEncrypt;
 
 @Service
-public class Authentication {
+public class AuthService {
 
 	@Autowired
 	private MessageSource messageSource;

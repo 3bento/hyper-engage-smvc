@@ -168,20 +168,18 @@
 	</div>
 
 	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
-	
 		$('#check-username').click(function(){
 			var username = $('#username').val();
 			//console.log(username);
 			$.getJSON("${pageContext.servletContext.contextPath}/api/signup/search/"+username, success);
 		});
-	
+
 		function success(data){
 			var username = document.getElementById("username");
 			var usernameMessage = document.getElementById("usernameMessage");
 			if(data.isError){
-				username.className=""
 				usernameMessage.className = "ui pointing red basic label";
 				usernameMessage.innerHTML = "<sp:message code='usermessage.user.username.exist'/>";
 			} else {

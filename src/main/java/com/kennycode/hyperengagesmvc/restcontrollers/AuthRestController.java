@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kennycode.hyperengagesmvc.models.UserMessage;
-import com.kennycode.hyperengagesmvc.services.Authentication;
+import com.kennycode.hyperengagesmvc.services.AuthService;
 
 @RestController
 @RequestMapping("/api")
@@ -19,7 +19,7 @@ public class AuthRestController {
 	private MessageSource messageSource;
 
 	@Autowired
-	private Authentication authentication;
+	private AuthService authentication;
 
 	private UserMessage userMessage;
 

@@ -3,11 +3,14 @@ package com.kennycode.hyperengagesmvc.services;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,14 +25,20 @@ public class RecaptchaService implements IRecaptchaService{
 	private static Pattern TOKEN_PATTERN = Pattern.compile("[A-Za-z0-9_-]+");
 	
 	@Autowired
-	RestTemplateBuilder restTemplateBuilder;
+	MessageSource messageSource;
 	
 	@Autowired
-	RecaptchaSettings recaptchaSettings;
+	private RestTemplateBuilder restTemplateBuilder;
+	
+	@Autowired
+	private RecaptchaSettings recaptchaSettings;
 	
 	@Override
-	public UserMessage process(String token, String ip) {
+	public UserMessage process(String token, String ip, Locale locale) {
 		UserMessage userMessage = new UserMessage();
+		
+		Locale localeTest = LocaleContextHolder.getLocale();
+		System.out.print("LocaleTest: "+localeTest.getLanguage());
 		
 		// check if recaptcha token is valid!
 		if(isTokenValid(token)) {
@@ -50,7 +59,7 @@ public class RecaptchaService implements IRecaptchaService{
 			// check if recaptcha is okay or not.
 			if(recaptchaSuccess) {
 				userMessage.setIsError(false);
-				userMessage.addDescription("Recaptcha is okay!");
+				userMessage.addDescription(messageSource.getMessage("recaptcha.checked", null, locale));
 			}else {
 				// get the list of errors and put in userMessage (my default object to errors)
 				List<String> errorCodes = (List<String>) responseBody.get("error-codes");
@@ -62,7 +71,7 @@ public class RecaptchaService implements IRecaptchaService{
 		} else {
 			// token of recaptcha is invalid!
 			userMessage.setIsError(true);
-			userMessage.addDescription("Recaptcha Token is invalid! try again!");
+			userMessage.addDescription(messageSource.getMessage("recaptcha.unchecked", null, locale));
 		}
 
 		return userMessage;
