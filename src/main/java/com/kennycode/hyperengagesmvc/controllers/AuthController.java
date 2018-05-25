@@ -75,7 +75,12 @@ public class AuthController {
 	public String singup(Map<String, Object> model) {
 		return "auth/signup";
 	}
-
+	
+	@PostMapping("/signin/login")
+	public String login(User user, Locale locale) {
+		return "sec/timeline";
+	}
+	
 	@GetMapping("/signin")
 	public String signin(Map<String, Object> model) {
 		return "auth/signin";

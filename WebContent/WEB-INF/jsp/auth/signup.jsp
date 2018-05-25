@@ -4,16 +4,17 @@
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags"%>
 <html lang="en">
 <head>
-<title>Create account - Hyper Engage</title>
+<title>Join us - Hyper Engage</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%-- list of links/var --%>
 <c:url var="semanticUiCss"
 	value="/assets/css/semantic-ui-css/semantic.min.css" />
 <c:url var="defaultCss" value="/assets/css/default.css" />
+<c:url var="recaptcha" value="https://www.google.com/recaptcha/api.js?hl=en" />
 <!-- styles -->
 <link href="${defaultCSs}" rel="stylesheet" type="text/css" />
 <link href="${semanticUiCss}" rel="stylesheet" type="text/css" />
-<script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
+<script src="${recaptcha}"></script>
 </head>
 
 <body>

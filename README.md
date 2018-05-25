@@ -51,21 +51,20 @@ That is simple Scrum kanban! Maybe will remove it. I don't know, i like it XD
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 To-Do
-- signup (frontend / backend)
-- configure the database / memcache
-- signin (frontend / backend)
+- configure memcache
 - forgetpassowrd (front / backend)
 - profile (show, update)
 -------------------------------------------------------------------------------------------------
 In-Progress
-- signup (frontend) 98%/100% (I need to compare passwords.)
-- signup (backend) 98%/100% (I need to change hard strings to internationalization.)
+- signin (frontend) 20%/100%
+- signin (backend) 10%/100%
 -------------------------------------------------------------------------------------------------
 Done
 - [x] configured Spring Boot (Spring MVC)
 - [x] configured internationalization (en,jp,pt-BR)
 - [x] configured page error 404/500 (no layout added)
 - [x] configure the database (mysql)
+- [x] signup (frontend/backend)
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
