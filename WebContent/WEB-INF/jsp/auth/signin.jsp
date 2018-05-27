@@ -36,10 +36,9 @@
 			<a href="${pageContext.servletContext.contextPath}/signin/forgot/password" ><sp:message code="signin.form.login.forgot.password" /></a>
 		</div>
 		<div>
-			<input type="submit" value="Login" />
+			<input type="submit" value="Login"/>
 		</div>
 	</form>
-	
 	<script>
 		function validateForm(){
 			return false;

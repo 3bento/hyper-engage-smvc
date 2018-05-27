@@ -32,7 +32,7 @@ public class SampleController {
 		// model.addAttribute("locale", currentLocale);
 		// model.addAttribute("startMeeting", "10:30");
 
-		return "welcome";
+		return "welcome";	
 	}
 
 	@RequestMapping("/aboutus")

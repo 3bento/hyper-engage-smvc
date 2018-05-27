@@ -10,6 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+import com.kennycode.hyperengagesmvc.interceptor.AuthInterceptor;
+
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -43,6 +45,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeInterceptor());
+		registry.addInterceptor(new AuthInterceptor());
 	}
 
 	// probably i will remove it!!! because i have that configuration inside

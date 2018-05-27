@@ -81,6 +81,12 @@ public class AuthController {
 		return "sec/timeline";
 	}
 	
+	@GetMapping("/signin/login")
+	public String loginX(Locale locale) {
+		return "sec/timeline";
+	}
+	
+	
 	@GetMapping("/signin")
 	public String signin(Map<String, Object> model) {
 		return "auth/signin";
